@@ -23,6 +23,7 @@ import (
 	"entgo.io/ent/entc/gen"
 )
 
+// STUDY: entproto generate '*.proto' file.
 func main() {
 	var (
 		schemaPath = flag.String("path", "", "path to schema directory")

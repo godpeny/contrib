@@ -39,6 +39,10 @@ var (
 func main() {
 	var flags flag.FlagSet
 	entSchemaPath = flags.String("schema_path", "", "ent schema path")
+	// STUDY: protoGen.Options{}.Run
+	// STUDY: ...executes a function as a protoc plugin.
+	// STUDY: It reads a CodeGeneratorRequest message from os.Stdin, invokes the plugin function, and writes a CodeGeneratorResponse message to os.Stdout.
+	// STUDY: If a failure occurs while reading or writing, Run prints an error to os.Stderr and calls os.Exit(1).
 	protogen.Options{
 		ParamFunc: flags.Set,
 	}.Run(func(plg *protogen.Plugin) error {
@@ -160,6 +164,8 @@ type (
 //go:embed template/*
 var templates embed.FS
 
+// 'UserService' -> 'User'
+// return 'User' entgo schema.
 func extractEntTypeName(s *protogen.Service, g *gen.Graph) (*gen.Type, error) {
 	typeName := strings.TrimSuffix(s.GoName, "Service")
 	for _, gt := range g.Nodes {

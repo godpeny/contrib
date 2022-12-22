@@ -1,0 +1,12 @@
+<intro>
+protoc (aka the Protocol Compiler) can be extended via plugins.
+A plugin is just a program that reads a CodeGeneratorRequest from stdin and writes a CodeGeneratorResponse to stdout.
+A plugin executable needs only to be placed somewhere in the path.
+The plugin should be named “protoc-gen-$NAME”, and will then be used when the flag “–${NAME}_out” is passed to protoc.
+
+<protoc-option>
+Users can pass each protoc plugin some custom options using the --<plugin>_opt flag.
+
+<protogen>
+The great news is that when they released the v2 API for Protobuf,
+the Go team included a wonderful little library named protogen that makes it super-easy to write protoc plugins.
